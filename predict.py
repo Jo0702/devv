@@ -172,11 +172,11 @@ if __name__ == "__main__":
 #                             保存视频
                             out.write(frame)
                         frame = io.BytesIO(frame)  # Streamlit转格式显示重要步骤！！！（往内存中写入estimate数据）
-                    yolo.show_df()
-                    capture.release() #释放硬件资源
-                    if video_save_path!="":
-                        out.release()
-#                   st.video(video_save_path) #播放处理好了的视频
+                yolo.show_df()
+                capture.release() #释放硬件资源
+                if video_save_path!="":
+                    out.release()
+#               st.video(video_save_path) #播放处理好了的视频
             else:
                 st.title(":exclamation:您还未选择视频文件")
 
