@@ -131,6 +131,13 @@ if __name__ == "__main__":
                 tfile = tempfile.NamedTemporaryFile(delete=False)
                 tfile.write(video_path.read())
                 capture = cv2.VideoCapture(tfile.name) #读取摄像头，视频抽帧,视频图像化,参数是视频文件路径（摄像头索引）
+                
+                if video_save_path!="":#video_save_path表示视频保存的路径，当video_save_path=""时表示不保存
+                    #保存视频
+                    fourcc  = int(cv2.VideoWriter_fourcc(*'avc1')) #编码格式，*'XVID' 单帧耗时(s)0.3785 文件小
+                    size    = (int(capture.get(cv2.CAP_PROP_FRAME_WIDTH)), int(capture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+                    out     = cv2.VideoWriter(video_save_path, fourcc, video_fps, size)
+                    # st.video(video_save_path)
                 fps = 0.0     
 
                 ########### Streamlit：Error Message ###########
@@ -156,6 +163,15 @@ if __name__ == "__main__":
                         frame = np.array(yolo.detect_image(frame))
                         # RGBtoBGR满足opencv显示格式
                         frame = cv2.cvtColor(frame,cv2.COLOR_RGB2BGR)
+
+#                         fps  = ( fps + (1./(time.time()-t1)) ) / 2
+#                         print("fps= %.2f"%(fps))
+#                         frame = cv2.putText(frame, "fps= %.2f"%(fps), (0, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+#                         st.image(frame, caption='Video')  # 将图片帧展示在同一位置得到视频效果
+#                         if video_save_path!="":
+#                             保存视频
+#                             out.write(frame)
+#                         frame = io.BytesIO(frame)  # Streamlit转格式显示重要步骤！！！（往内存中写入estimate数据）
                     yolo.show_df()
                     capture.release() #释放硬件资源
                     if video_save_path!="":
