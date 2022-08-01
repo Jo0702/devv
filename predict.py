@@ -176,7 +176,7 @@ if __name__ == "__main__":
                 capture.release() #释放硬件资源
                 if video_save_path!="":
                     out.release()
-                st.video(video_save_path) #播放处理好了的视频
+#                st.video(video_save_path) #播放处理好了的视频
             else:
                 st.title(":exclamation:您还未选择视频文件")
 
