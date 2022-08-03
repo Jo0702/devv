@@ -25,7 +25,7 @@ if __name__ == "__main__":
     # Configures the default settings of the page.
     # This must be the first Streamlit command used in your app, and must only be set once.
     st.set_page_config(
-        page_title="Hazard Bird Detection",
+        page_title="Harmful Bird Detection",
         page_icon=":baby_chick::baby_chick:",
         layout="wide",
         initial_sidebar_state="expanded"
